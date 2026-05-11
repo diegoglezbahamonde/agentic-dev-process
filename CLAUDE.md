@@ -24,6 +24,8 @@ Before writing or modifying code:
 
 Ticket-driven work goes through `/work TICKET-ID`. It enforces Explore → Plan → Implement → Verify with checkpoints. Do not code directly from a freeform prompt.
 
+If you don't have a ticket yet, draft one with `/refine <idea>` first — the `ticket-refiner` subagent produces a structured story you can review before it lands in the tracker.
+
 When you finish a piece of work, the `code-reviewer` subagent reviews your diff before you hand back to the human.
 
 ## Doc map
@@ -44,6 +46,9 @@ docs/
 ├── database/
 │   ├── not-null-fields.md
 │   └── no-business-logic-in-defaults.md
+├── process/
+│   ├── commit-and-pr.md
+│   └── user-story.md
 └── testing/
     ├── test-pyramid.md
     ├── tdd-workflow.md
