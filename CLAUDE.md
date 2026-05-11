@@ -1,28 +1,57 @@
 # Project context
 
-<!-- Keep this file small. Conventions live in skills, not here. -->
+Keep this file small. Conventions live in skills and docs, not here.
 
 ## Stack
 
-- Language: <FILL IN>
-- Framework: <FILL IN>
-- Test runner: <FILL IN>
-- Linter / formatter: <FILL IN>
-- Package manager: <FILL IN>
-
-## Architecture
-
-This project follows <FILL IN: e.g. hexagonal architecture with DDD>. See the `architecture` skill for the rules.
+- Backend: Python
+- Frontend: TypeScript
+- Architecture: hexagonal (ports & adapters) with DDD
+- Testing: TDD, strict from day one. Unit + integration + API + E2E.
 
 ## How you (the agent) work here
 
-- Before writing or modifying code, read the relevant skill(s) in `.claude/skills/`. Match by the skill's description.
-- For any ticket-driven work, use the `/work` command rather than coding directly from a prompt. It enforces Explore → Plan → Implement → Verify with checkpoints.
-- Tests come first. Do not write production code without a failing test that motivates it. See the `testing-conventions` skill.
-- Never bypass hooks. If a hook blocks you, fix the underlying issue rather than working around it.
-- Never invent ticket IDs, API contracts, or library APIs. If unsure, ask or read the code.
-- When you finish a piece of work, the `code-reviewer` subagent reviews your diff before you hand back to the human.
+Before writing or modifying code:
+
+1. Read the relevant skill(s) under `.claude/skills/` — match by the skill's description.
+2. Skills point to focused docs under `docs/`. Read only the docs the task touches.
+3. **Do not read all docs upfront.** The map below is for navigation, not bulk reading.
+4. Tests come first. No production code without a failing test that motivates it.
+5. Never bypass hooks. If a hook blocks you, fix the underlying issue.
+6. Never invent ticket IDs, API contracts, or library APIs. If unsure, ask or read the code.
+
+## Workflow
+
+Ticket-driven work goes through `/work TICKET-ID`. It enforces Explore → Plan → Implement → Verify with checkpoints. Do not code directly from a freeform prompt.
+
+When you finish a piece of work, the `code-reviewer` subagent reviews your diff before you hand back to the human.
+
+## Doc map
+
+```
+docs/
+├── architecture/
+│   ├── ddd-overview.md
+│   ├── hexagonal-ports-adapters.md
+│   ├── use-case-interface.md
+│   ├── service-locator-injection.md
+│   ├── use-case-executor.md
+│   └── cqrs-read-write-separation.md
+├── backend/
+│   └── python-conventions.md
+├── frontend/
+│   └── typescript-conventions.md
+├── database/
+│   ├── not-null-fields.md
+│   └── no-business-logic-in-defaults.md
+└── testing/
+    ├── test-pyramid.md
+    ├── tdd-workflow.md
+    ├── given-when-then.md
+    ├── full-entity-asserts.md
+    └── object-mothers.md
+```
 
 ## Project-specific notes
 
-<!-- Anything truly always-relevant: domain glossary pointer, deployment quirks, "the foo service is being decommissioned, don't extend it" -->
+<!-- Per-project additions: domain glossary pointer, deployment quirks, deprecated subsystems not to extend. -->
