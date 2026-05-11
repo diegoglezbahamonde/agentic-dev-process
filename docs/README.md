@@ -29,6 +29,7 @@ Skills under `.claude/skills/` are thin triggers that point here. The agent shou
 ## Process
 
 - [User story](process/user-story.md)
+- [Commit and PR](process/commit-and-pr.md)
 
 ## Testing
 

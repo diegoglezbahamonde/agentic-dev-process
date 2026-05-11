@@ -47,6 +47,7 @@ docs/
 │   ├── not-null-fields.md
 │   └── no-business-logic-in-defaults.md
 ├── process/
+│   ├── commit-and-pr.md
 │   └── user-story.md
 └── testing/
     ├── test-pyramid.md
