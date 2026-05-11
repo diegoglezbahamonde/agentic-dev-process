@@ -14,11 +14,12 @@ Use this skill whenever you touch the application, domain, or infrastructure lay
 - [Use case interface](../../../docs/architecture/use-case-interface.md) — interface + command shape. Read when adding a use case.
 - [ServiceLocator-style injection](../../../docs/architecture/service-locator-injection.md) — how use cases resolve dependencies. Read when adding a dependency to a use case.
 - [Use case executor](../../../docs/architecture/use-case-executor.md) — how use cases are invoked. Read when wiring an HTTP route, CLI command, or worker.
-- [CQRS: read/write separation](../../../docs/architecture/cqrs-read-write-separation.md) — when to bypass the domain. Read when adding a list, search, or report endpoint.
+- [CQRS: read/write separation](../../../docs/architecture/cqrs-read-write-separation.md) — lightweight separation: separate read/write ports, reads return DTOs, storage stays shared. Read when adding a list, search, or report endpoint.
 
 ## Quick rules (without reading anything else)
 
 - Domain has no imports from application or infrastructure.
-- Use cases receive a `ServiceLocator`, nothing else.
-- Use cases are invoked via `executor.execute(UseCase, command)` — never instantiated by callers.
-- Reads do not load aggregates. They project directly to DTOs.
+- Use cases implement `UseCase[Input, Output]`. Constructor uses the **hybrid pattern**: ports and the executor are optional args, defaulting to `ServiceLocator.find(<Port>.__name__)`. Tests pass deps explicitly; production calls the no-arg constructor.
+- Commands AND queries are use cases through the same executor — `executor.execute(UseCase, input)`. There is no separate query-handler concept.
+- Reads have their own ports (`InvoiceReader` vs `InvoiceRepository`) and return DTOs shaped for the consumer. They don't construct aggregates by default.
+- Storage stays shared. Separate read stores / event sourcing are per-feature decisions when scale demands, not the default.
