@@ -26,6 +26,10 @@ Skills under `.claude/skills/` are thin triggers that point here. The agent shou
 - [NOT NULL fields](database/not-null-fields.md)
 - [No business logic in defaults](database/no-business-logic-in-defaults.md)
 
+## Process
+
+- [User story](process/user-story.md)
+
 ## Testing
 
 - [Test pyramid](testing/test-pyramid.md)
